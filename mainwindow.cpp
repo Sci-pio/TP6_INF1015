@@ -13,7 +13,7 @@ MainWindow:: MainWindow(Model::CaisseEnregistreuse* caisse, QWidget* parent) : Q
 {
     caisse_ = caisse;
     caisseEstLocale_ = false;
-    //setup();
+    setup();
 }
 
 MainWindow::~MainWindow()
@@ -28,5 +28,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::setMenu()
 {
+    QAction* exit = new QAction(tr("E&xit"), this);
+    exit -> setShortcuts(QKeySequence::Quit);
+    connect(exit, SIGNAL(triggered()), this, SLOT(close()));
 
+    QMenu* fileMenu = menuBar()->addMenu(tr("&File"));
+    fileMenu->addAction(exit);
+}
+
+void MainWindow::setup()
+{
+    setMenu();
 }
