@@ -8,7 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     caisse_ = new Model::CaisseEnregistreuse();
     ui->setupUi(this);
-    setUpListe();
+    miseEnPlaceMainWindow();
+    miseEnPlacePrix();
 
     QObject::connect(caisse_, &Model::CaisseEnregistreuse::nouvelleInformation,
                      this, &MainWindow::rafraichirVue);
@@ -20,19 +21,39 @@ MainWindow::~MainWindow()
     delete caisse_;
 }
 
-void MainWindow::setUpListe()
+void MainWindow::miseEnPlaceMainWindow()
+{
+    setWindowTitle("Caisse Enregristreuse INF1015:");
+    afficherListeArticle();
+}
+
+void MainWindow::miseEnPlacePrix()
+{
+    double avTaxes = caisse_->avoirTotalPreTaxes();
+    double taxes = 1; //REMPLACER LE 1 PAR FONCTION LAMDDA
+
+    ui->totalAvantTaxes->setText(QString::number(avTaxes, 'f',2));
+    ui->totalDesTaxes->setText(QString::number(taxes, 'f',2));
+    ui->totalApayer->setText(QString::number(taxes * avTaxes, 'f',2));
+}
+void MainWindow::afficherListeArticle()
 {
     ui->listArticle->clear();
+    std::vector<Model::Article*> articles = caisse_->avoirListeArticle();
 
-    for (auto elem: caisse_->avoirListeArticle()) {
+    for (auto elem: articles) {
         std::string affichage = elem->description + "\t" + std::to_string(elem->prix);
+
         QListWidgetItem* item = new QListWidgetItem(QString::fromStdString(affichage),ui->listArticle);
+        item->setData(Qt::UserRole, QVariant::fromValue<Model::Article*>(elem));
     }
+
+    ui->enleverBtn->setDisabled(articles.empty());
 }
 void MainWindow::rafraichirVue()
 {
-    setUpListe();
-    ui->console->appendPlainText("RAFRAICHIR");
+    afficherListeArticle();
+    miseEnPlacePrix();
 }
 
 void MainWindow::on_validerBtn_clicked()
@@ -43,7 +64,6 @@ void MainWindow::on_validerBtn_clicked()
     article->taxable = ui->checkBoxTaxe->isChecked();
 
     caisse_->ajouterArticle(article);
-    ui->console->appendPlainText(QString::number(article->prix));
 }
 
 
@@ -55,7 +75,15 @@ void MainWindow::on_reinitialiserBtn_clicked()
 
 void MainWindow::on_enleverBtn_clicked()
 {
+    std::vector<Model::Article*> aEnlever;
 
+    for (QListWidgetItem *item : ui->listArticle->selectedItems()) {
+        aEnlever.push_back(item->data(Qt::UserRole).value<Model::Article*>());
+    }
+
+    for(Model::Article* a: aEnlever){
+        caisse_->retirerArticle(a);
+    }
 }
 
 //MainWindow:: MainWindow(Model::CaisseEnregistreuse* caisse, QWidget* parent) : QMainWindow(parent)

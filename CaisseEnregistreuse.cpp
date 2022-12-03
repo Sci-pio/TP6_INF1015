@@ -20,6 +20,7 @@ void Model::CaisseEnregistreuse:: retirerArticle(Article* article)
 
     if(it!=articleConteneur_.end()){
         articleConteneur_.erase(it);
+        totalPreTaxes_ -= article->prix;
         emit nouvelleInformation();
     }
 }

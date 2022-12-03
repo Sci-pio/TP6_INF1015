@@ -24,7 +24,9 @@ public:
     //MainWindow(Model::CaisseEnregistreuse* caisse, QWidget* parent=0 ); Leo: dans qu'elle situation ont en a besoin?
 
 private:
-    void setUpListe();
+    void miseEnPlaceMainWindow();
+    void miseEnPlacePrix();
+    void afficherListeArticle();
 
     Ui::MainWindow *ui;
     Model::CaisseEnregistreuse* caisse_;

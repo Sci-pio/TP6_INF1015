@@ -29,7 +29,9 @@ public:
 
     void ajouterArticle(Article* article);
     void retirerArticle(Article* article);
+
     std::vector<Article*> avoirListeArticle() const;
+    double avoirTotalPreTaxes(){return totalPreTaxes_;};
     //double totalTaxes = [](*this) {return totalPreTaxes_ * 0.14975;};
 
 private:
