@@ -1,9 +1,5 @@
 #include "CaisseEnregistreuse.h"
 
-CaisseEnregistreuse::CaisseEnregistreuse()
-{
-
-}
 CaisseEnregistreuse::~CaisseEnregistreuse()
 {
     while (!articleConteneur_.empty()) {
@@ -15,6 +11,7 @@ void CaisseEnregistreuse:: ajouterArticle(Article* article)
 {
     articleConteneur_.push_back(article);
     totalPreTaxes_ += article->prix;
+
     emit articleAjoute(article);
     emit totalPreTaxesMisAJour(totalPreTaxes_);
 }

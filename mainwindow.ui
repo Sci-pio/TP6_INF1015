@@ -13,7 +13,34 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>90</y>
+      <width>83</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>290</y>
+      <width>25</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -28,7 +55,13 @@
      <string>i love latinas</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menui_love_ass">
+    <property name="title">
+     <string>i love ass</string>
+    </property>
+   </widget>
    <addaction name="menui_love_latinas"/>
+   <addaction name="menui_love_ass"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionasas">

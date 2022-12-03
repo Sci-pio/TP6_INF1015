@@ -23,10 +23,11 @@ class CaisseEnregistreuse: public QObject
 {
     Q_OBJECT
 public:
-    CaisseEnregistreuse();
+    CaisseEnregistreuse() = default;
     ~CaisseEnregistreuse();
     void ajouterArticle(Article* article);
     void retirerArticle(Article* article);
+    //double totalTaxes = [](*this) {return totalPreTaxes_ * 0.14975;};
 
 public slots:
 
@@ -37,16 +38,8 @@ signals:
 
 private:
    std::vector<Article*> articleConteneur_;
-   double totalPreTaxes_ = 0.0; // jarrive pas a implementer comme ils veulent avec fonction lambda
+   double totalPreTaxes_;
+   double totalTaxesTemp_ = 0; // jarrive pas a implementer comme ils veulent avec fonction lambda
 };
-
-
-
-
-
-
-
-
-
 
 #endif // CAISSEENREGISTREUSE_H
