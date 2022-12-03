@@ -30,7 +30,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>50</y>
+      <y>70</y>
       <width>161</width>
       <height>21</height>
      </rect>
@@ -48,7 +48,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>80</y>
+      <y>100</y>
       <width>161</width>
       <height>20</height>
      </rect>
@@ -66,7 +66,7 @@
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>50</y>
+      <y>70</y>
       <width>113</width>
       <height>22</height>
      </rect>
@@ -76,7 +76,7 @@
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>80</y>
+      <y>100</y>
       <width>113</width>
       <height>22</height>
      </rect>
@@ -86,7 +86,7 @@
     <property name="geometry">
      <rect>
       <x>570</x>
-      <y>80</y>
+      <y>100</y>
       <width>41</width>
       <height>20</height>
      </rect>
@@ -99,7 +99,7 @@
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>110</y>
+      <y>130</y>
       <width>201</width>
       <height>20</height>
      </rect>
@@ -120,7 +120,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>140</y>
+      <y>160</y>
       <width>271</width>
       <height>24</height>
      </rect>
@@ -133,7 +133,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>330</y>
+      <y>310</y>
       <width>101</width>
       <height>24</height>
      </rect>
@@ -145,7 +145,7 @@
    <widget class="QPushButton" name="reinitialiserBtn">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>520</x>
       <y>340</y>
       <width>75</width>
       <height>24</height>
@@ -158,14 +158,56 @@
    <widget class="QPlainTextEdit" name="console">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
+      <x>340</x>
+      <y>210</y>
       <width>221</width>
       <height>111</height>
      </rect>
     </property>
     <property name="plainText">
      <string>Console pour tester:</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listArticle">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>251</width>
+      <height>271</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>60</y>
+      <width>16</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>40</y>
+      <width>191</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>AJOUTER UN ARTICLE:</string>
     </property>
    </widget>
   </widget>

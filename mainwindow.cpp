@@ -1,15 +1,18 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     caisse_ = new Model::CaisseEnregistreuse();
     ui->setupUi(this);
+    setUpListe();
 
     QObject::connect(caisse_, &Model::CaisseEnregistreuse::nouvelleInformation,
                      this, &MainWindow::rafraichirVue);
+
 }
 
 MainWindow::~MainWindow()
@@ -17,9 +20,19 @@ MainWindow::~MainWindow()
     delete caisse_;
 }
 
+void MainWindow::setUpListe()
+{
+    ui->listArticle->clear();
+
+    for (auto elem: caisse_->avoirListeArticle()) {
+        std::string affichage = elem->description + "\t" + std::to_string(elem->prix);
+        QListWidgetItem* item = new QListWidgetItem(QString::fromStdString(affichage),ui->listArticle);
+    }
+}
 void MainWindow::rafraichirVue()
 {
-     ui->console->appendPlainText("RAFRAICHIR");
+    setUpListe();
+    ui->console->appendPlainText("RAFRAICHIR");
 }
 
 void MainWindow::on_validerBtn_clicked()

@@ -1,6 +1,7 @@
 #ifndef CAISSEENREGISTREUSE_H
 #define CAISSEENREGISTREUSE_H
 #include <QMainWindow>
+#include <QBoxLayout>
 #include <vector>
 
 namespace Model {
@@ -28,6 +29,7 @@ public:
 
     void ajouterArticle(Article* article);
     void retirerArticle(Article* article);
+    std::vector<Article*> avoirListeArticle() const;
     //double totalTaxes = [](*this) {return totalPreTaxes_ * 0.14975;};
 
 private:

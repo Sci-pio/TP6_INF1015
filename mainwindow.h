@@ -6,7 +6,7 @@
 #include <QPushButton>
 #include <QWidget>
 #include <QCheckBox>
-#include <QListWidget>
+#include <QApplication>
 #include <QLabel>
 #include "CaisseEnregistreuse.h"
 
@@ -23,6 +23,12 @@ public:
     ~MainWindow();
     //MainWindow(Model::CaisseEnregistreuse* caisse, QWidget* parent=0 ); Leo: dans qu'elle situation ont en a besoin?
 
+private:
+    void setUpListe();
+
+    Ui::MainWindow *ui;
+    Model::CaisseEnregistreuse* caisse_;
+
 public slots: // je les ai comment out pour que ca compile live mais on en aura besoin eventuellement
     void rafraichirVue();
     //void articleAEteAjoute(Model::Article*);
@@ -33,12 +39,7 @@ private slots:
     void on_reinitialiserBtn_clicked();
     void on_enleverBtn_clicked();
 
-private:
-    Ui::MainWindow *ui;
-    Model::CaisseEnregistreuse* caisse_;
-
     // methodes de setup, voir d.33+, si on utilise UI::setupUI() je crois pas que cest necessaire
-    //void setup();
     //void setMenu();
     //void setUI();
     //void chargerArticles();

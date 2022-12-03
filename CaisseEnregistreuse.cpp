@@ -24,4 +24,8 @@ void Model::CaisseEnregistreuse:: retirerArticle(Article* article)
     }
 }
 
+std::vector<Model::Article*> Model::CaisseEnregistreuse::avoirListeArticle() const
+{
+    return articleConteneur_;
+}
 
