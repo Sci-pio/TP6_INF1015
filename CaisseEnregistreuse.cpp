@@ -1,28 +1,26 @@
 #include "CaisseEnregistreuse.h"
 
-CaisseEnregistreuse::~CaisseEnregistreuse()
+Model::CaisseEnregistreuse::~CaisseEnregistreuse()
 {
     while (!articleConteneur_.empty()) {
         delete articleConteneur_.back();
         articleConteneur_.pop_back();
     }
 }
-void CaisseEnregistreuse:: ajouterArticle(Article* article)
+void Model::CaisseEnregistreuse:: ajouterArticle(Article* article)
 {
     articleConteneur_.push_back(article);
     totalPreTaxes_ += article->prix;
 
-    emit articleAjoute(article);
-    emit totalPreTaxesMisAJour(totalPreTaxes_);
+    emit nouvelleInformation();
 }
-void CaisseEnregistreuse:: retirerArticle(Article* article)
+void Model::CaisseEnregistreuse:: retirerArticle(Article* article)
 {
     auto it = find(articleConteneur_.begin(), articleConteneur_.end(), article);
 
     if(it!=articleConteneur_.end()){
-        Article* a = *it;
         articleConteneur_.erase(it);
-        emit articleRetire(a);
+        emit nouvelleInformation();
     }
 }
 
