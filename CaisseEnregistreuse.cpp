@@ -1,4 +1,5 @@
 #include "CaisseEnregistreuse.h"
+#include "Exception.h"
 
 Model::CaisseEnregistreuse::~CaisseEnregistreuse()
 {
@@ -7,12 +8,21 @@ Model::CaisseEnregistreuse::~CaisseEnregistreuse()
         articleConteneur_.pop_back();
     }
 }
+
+// voir ch.17 p.24
 void Model::CaisseEnregistreuse:: ajouterArticle(Article* article)
 {
-    articleConteneur_.push_back(article);
-    totalPreTaxes_ += article->prix;
-
-    emit nouvelleInformation();
+    if (article->description!="" && article->prix!=0)
+    {
+        articleConteneur_.push_back(article);
+        totalPreTaxes_ += article->prix;
+        if (article->taxable==true) {totalTaxes_ += article->prix*0.14975;} // solution temporaire en attendant la lambda
+        emit nouvelleInformation();
+    }
+    else{
+        if (article->description=="") {throw Exception::ExceptionDescriptionVide("La description de l'article est vide");}
+        else {throw Exception::ExceptionPrixNul("Le prix de l'article est nul");}
+    }
 }
 void Model::CaisseEnregistreuse:: retirerArticle(Article* article)
 {
@@ -21,12 +31,15 @@ void Model::CaisseEnregistreuse:: retirerArticle(Article* article)
     if(it!=articleConteneur_.end()){
         articleConteneur_.erase(it);
         totalPreTaxes_ -= article->prix;
+        if (article->taxable==true) {totalTaxes_ -= article->prix*0.14975;} // solution temporaire en attendant la lambda
         emit nouvelleInformation();
     }
 }
 
 std::vector<Model::Article*> Model::CaisseEnregistreuse::avoirListeArticle() const
 {
+    //std::vector<Model::Article*>* articleConteneurPtr = &articleConteneur_;
     return articleConteneur_;
 }
+
 

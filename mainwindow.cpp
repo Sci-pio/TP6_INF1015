@@ -13,12 +13,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     QObject::connect(caisse_, &Model::CaisseEnregistreuse::nouvelleInformation,
                      this, &MainWindow::rafraichirVue);
-
 }
 
 MainWindow::~MainWindow()
 {
     delete caisse_;
+    delete ui;
 }
 
 void MainWindow::miseEnPlaceMainWindow()
@@ -30,11 +30,11 @@ void MainWindow::miseEnPlaceMainWindow()
 void MainWindow::miseEnPlacePrix()
 {
     double avTaxes = caisse_->avoirTotalPreTaxes();
-    double taxes = 1; //REMPLACER LE 1 PAR FONCTION LAMDDA
+    double taxes = caisse_->avoirTotalTaxes();
 
     ui->totalAvantTaxes->setText(QString::number(avTaxes, 'f',2));
     ui->totalDesTaxes->setText(QString::number(taxes, 'f',2));
-    ui->totalApayer->setText(QString::number(taxes * avTaxes, 'f',2));
+    ui->totalApayer->setText(QString::number(taxes + avTaxes, 'f',2));
 }
 
 void MainWindow::afficherListeArticle()
@@ -43,7 +43,8 @@ void MainWindow::afficherListeArticle()
     std::vector<Model::Article*> articles = caisse_->avoirListeArticle();
 
     for (auto elem: articles) {
-        std::string affichage = elem->description + "\t" + std::to_string(elem->prix);
+        std::string affichage = elem->description + "\t" + QString::number(elem->prix, 'f',2).toStdString();
+        if (elem->taxable == true) {affichage += "\t taxable";}
 
         QListWidgetItem* item = new QListWidgetItem(QString::fromStdString(affichage),ui->listArticle);
         item->setData(Qt::UserRole, QVariant::fromValue<Model::Article*>(elem));
@@ -51,26 +52,42 @@ void MainWindow::afficherListeArticle()
 
     ui->enleverBtn->setDisabled(articles.empty());
 }
+
 void MainWindow::rafraichirVue()
 {
     afficherListeArticle();
     miseEnPlacePrix();
 }
 
+// voir ch.7 p.24
 void MainWindow::on_validerBtn_clicked()
 {
-    Model::Article* article = new Model::Article;
-    article->description = ui->LineEditDescription->text().toStdString();
-    article->prix = ui->LineEditPrix->text().toDouble();
-    article->taxable = ui->checkBoxTaxe->isChecked();
+    try {
+        Model::Article* article = new Model::Article;
+        article->description = ui->LineEditDescription->text().toStdString();
+        article->prix = ui->LineEditPrix->text().toDouble();
+        article->taxable = ui->checkBoxTaxe->isChecked();
+        caisse_->ajouterArticle(article);
 
-    caisse_->ajouterArticle(article);
+    } catch (Exception::ExceptionEntreeValeur& e) {
+        QMessageBox messageBox;
+        messageBox.critical(0, "Erreur d'entree de valeur", e.what());
+    }
 }
 
 
 void MainWindow::on_reinitialiserBtn_clicked()
 {
+    for (Model::Article* a : caisse_->avoirListeArticle()){
+        caisse_->retirerArticle(a);
+    }
 
+    ui->listArticle->clear();
+    ui->LineEditDescription->clear();
+    ui->LineEditPrix->clear();
+    ui->totalAvantTaxes->setText(QString::number(0, 'f',2));
+    ui->totalDesTaxes->setText(QString::number(0, 'f',2));
+    ui->totalApayer->setText(QString::number(0, 'f',2));
 }
 
 

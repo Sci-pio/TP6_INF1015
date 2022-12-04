@@ -32,12 +32,13 @@ public:
 
     std::vector<Article*> avoirListeArticle() const;
     double avoirTotalPreTaxes(){return totalPreTaxes_;};
+    double avoirTotalTaxes(){return totalTaxes_;}
     //double totalTaxes = [](*this) {return totalPreTaxes_ * 0.14975;};
 
 private:
     std::vector<Article*> articleConteneur_;
     double totalPreTaxes_;
-    double totalTaxesTemp_ = 0; // jarrive pas a implementer comme ils veulent avec fonction lambda
+    double totalTaxes_; // jarrive pas a implementer comme ils veulent avec fonction lambda
 
 signals:
     void nouvelleInformation();

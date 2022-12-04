@@ -15,6 +15,7 @@ SOURCES += \
 
 HEADERS += \
     CaisseEnregistreuse.h \
+    Exception.h \
     mainwindow.h
 
 FORMS += \
