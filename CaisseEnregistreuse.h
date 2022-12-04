@@ -16,6 +16,7 @@ struct Article{
         if ((description == a.description) && (prix == a.prix) && (taxable == a.taxable)) {return true;}
         return false;
     }
+
 };
 
 class CaisseEnregistreuse: public QObject
@@ -30,13 +31,13 @@ public:
     void retirerArticle(Article* article);
 
     std::vector<Article*> avoirListeArticle() const;
-    double avoirTotalPreTaxes(){return totalPreTaxes_;};
-    double avoirTotalTaxes(){return totalTaxes_;}
+    double avoirTotalPreTaxes() const {return totalPreTaxes_;};
+    double avoirTotalTaxes() const ;
+
 
 private:
     std::vector<Article*> articleConteneur_;
     double totalPreTaxes_;
-    double totalTaxes_; // IMPLEMENTER LAMBDA
 
 signals:
     void nouvelleInformation();

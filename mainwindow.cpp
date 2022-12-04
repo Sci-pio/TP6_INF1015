@@ -71,7 +71,7 @@ void MainWindow::on_validerBtn_clicked()
 
     } catch (Exception::ExceptionEntreeValeur& e) {
         QMessageBox messageBox;
-        messageBox.critical(0, "Erreur d'entreé de valeur", e.what());
+        messageBox.critical(0, "Erreur d'entrée de valeur", e.what());
     }
 }
 
