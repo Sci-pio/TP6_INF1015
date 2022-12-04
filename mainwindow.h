@@ -11,7 +11,7 @@
 #include <QMessageBox>
 #include "CaisseEnregistreuse.h"
 #include <cmath>
-#include "Exception.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

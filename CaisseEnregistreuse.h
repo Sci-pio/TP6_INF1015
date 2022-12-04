@@ -11,7 +11,6 @@ struct Article{
     double prix;
     bool taxable;
 
-    // pour l'iteration sur vecteur de Articles (yavait des erreurs sinon)
     bool operator==(const Article& a) const
     {
         if ((description == a.description) && (prix == a.prix) && (taxable == a.taxable)) {return true;}
@@ -33,12 +32,11 @@ public:
     std::vector<Article*> avoirListeArticle() const;
     double avoirTotalPreTaxes(){return totalPreTaxes_;};
     double avoirTotalTaxes(){return totalTaxes_;}
-    //double totalTaxes = [](*this) {return totalPreTaxes_ * 0.14975;};
 
 private:
     std::vector<Article*> articleConteneur_;
     double totalPreTaxes_;
-    double totalTaxes_; // jarrive pas a implementer comme ils veulent avec fonction lambda
+    double totalTaxes_; // IMPLEMENTER LAMBDA
 
 signals:
     void nouvelleInformation();

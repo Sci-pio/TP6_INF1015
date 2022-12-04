@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "Exception.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -71,7 +71,7 @@ void MainWindow::on_validerBtn_clicked()
 
     } catch (Exception::ExceptionEntreeValeur& e) {
         QMessageBox messageBox;
-        messageBox.critical(0, "Erreur d'entree de valeur", e.what());
+        messageBox.critical(0, "Erreur d'entreé de valeur", e.what());
     }
 }
 
@@ -85,6 +85,7 @@ void MainWindow::on_reinitialiserBtn_clicked()
     ui->listArticle->clear();
     ui->LineEditDescription->clear();
     ui->LineEditPrix->clear();
+    ui->checkBoxTaxe->setChecked(false);
     ui->totalAvantTaxes->setText(QString::number(0, 'f',2));
     ui->totalDesTaxes->setText(QString::number(0, 'f',2));
     ui->totalApayer->setText(QString::number(0, 'f',2));
