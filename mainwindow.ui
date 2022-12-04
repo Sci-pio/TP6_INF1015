@@ -98,9 +98,9 @@
    <widget class="QCheckBox" name="checkBoxTaxe">
     <property name="geometry">
      <rect>
-      <x>290</x>
+      <x>280</x>
       <y>130</y>
-      <width>231</width>
+      <width>201</width>
       <height>20</height>
      </rect>
     </property>

@@ -1,3 +1,8 @@
+// Auteurs: Leonard Pouliot (2150965) et Kamil Maarite (2152653)
+// Date: 4 decembre 2022
+// Cours: INF1015
+// Nom de la classe: CaisseEnregistreuse.cpp
+
 #include "CaisseEnregistreuse.h"
 #include "Exception.h"
 
@@ -16,7 +21,6 @@ void Model::CaisseEnregistreuse:: ajouterArticle(Article* article)
     {
         articleConteneur_.push_back(article);
         totalPreTaxes_ += article->prix;
-        //if (article->taxable==true) {totalTaxes_ += article->prix*0.14975;} // solution temporaire en attendant la lambda
         emit nouvelleInformation();
     }
     else{
@@ -31,7 +35,6 @@ void Model::CaisseEnregistreuse:: retirerArticle(Article* article)
     if(it!=articleConteneur_.end()){
         articleConteneur_.erase(it);
         totalPreTaxes_ -= article->prix;
-        //if (article->taxable==true) {totalTaxes_ -= article->prix*0.14975;} // solution temporaire en attendant la lambda
         emit nouvelleInformation();
     }
 }
@@ -47,8 +50,4 @@ double Model::CaisseEnregistreuse::avoirTotalTaxes() const
                                  [](Article* a){return a->taxable? a->prix * 0.14975: 0.0;});
 }
 
-//std::function<double()> FonctionLambdaTaxe = [&](){
-//    return std::reduce(articleConteneur_.begin(), articleConteneur_.end(),1);
-//  } ;
-//
 

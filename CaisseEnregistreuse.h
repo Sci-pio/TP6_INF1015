@@ -1,3 +1,8 @@
+// Auteurs: Leonard Pouliot (2150965) et Kamil Maarite (2152653)
+// Date: 4 decembre 2022
+// Cours: INF1015
+// Nom de la classe: CaisseEnregistreuse.h
+
 #ifndef CAISSEENREGISTREUSE_H
 #define CAISSEENREGISTREUSE_H
 #include <QMainWindow>
@@ -16,7 +21,6 @@ struct Article{
         if ((description == a.description) && (prix == a.prix) && (taxable == a.taxable)) {return true;}
         return false;
     }
-
 };
 
 class CaisseEnregistreuse: public QObject
@@ -33,7 +37,6 @@ public:
     std::vector<Article*> avoirListeArticle() const;
     double avoirTotalPreTaxes() const {return totalPreTaxes_;};
     double avoirTotalTaxes() const ;
-
 
 private:
     std::vector<Article*> articleConteneur_;

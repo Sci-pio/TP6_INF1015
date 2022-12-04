@@ -1,3 +1,8 @@
+// Auteurs: Leonard Pouliot (2150965) et Kamil Maarite (2152653)
+// Date: 4 decembre 2022
+// Cours: INF1015
+// Nom de la classe: Exception.h
+
 #ifndef EXCEPTION_H
 #define EXCEPTION_H
 #include <stdexcept>
@@ -24,4 +29,4 @@ namespace Exception
     };
 }
 
-#endif // EXCEPTION_H
+#endif

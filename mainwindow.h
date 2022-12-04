@@ -1,3 +1,8 @@
+// Auteurs: Leonard Pouliot (2150965) et Kamil Maarite (2152653)
+// Date: 4 decembre 2022
+// Cours: INF1015
+// Nom de la classe: mainwindow.h
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -42,5 +47,4 @@ private slots:
     void on_enleverBtn_clicked();
 };
 
-
-#endif // MAINWINDOW_H
+#endif
