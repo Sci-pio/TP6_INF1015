@@ -41,12 +41,7 @@ private:
 
 signals:
     void nouvelleInformation();
-    //void articleRetire(Model::Article* article);
-    //void totalPreTaxesMisAJour(double totalPreTaxes);
-    //void articleAjoute(Model::Article* article);
-
-
 };
 
 }
-#endif // CAISSEENREGISTREUSE_H
+#endif

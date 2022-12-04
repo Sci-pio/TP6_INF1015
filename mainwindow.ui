@@ -98,9 +98,9 @@
    <widget class="QCheckBox" name="checkBoxTaxe">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>290</x>
       <y>130</y>
-      <width>201</width>
+      <width>231</width>
       <height>20</height>
      </rect>
     </property>
@@ -311,7 +311,7 @@
    <widget class="QLabel" name="totalAvantTaxes">
     <property name="geometry">
      <rect>
-      <x>420</x>
+      <x>440</x>
       <y>240</y>
       <width>111</width>
       <height>21</height>
@@ -330,7 +330,7 @@
    <widget class="QLabel" name="totalDesTaxes">
     <property name="geometry">
      <rect>
-      <x>420</x>
+      <x>440</x>
       <y>260</y>
       <width>111</width>
       <height>21</height>
@@ -349,7 +349,7 @@
    <widget class="QLabel" name="totalApayer">
     <property name="geometry">
      <rect>
-      <x>420</x>
+      <x>440</x>
       <y>280</y>
       <width>111</width>
       <height>21</height>
