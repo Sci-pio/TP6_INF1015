@@ -14,7 +14,6 @@ Model::CaisseEnregistreuse::~CaisseEnregistreuse()
     }
 }
 
-// voir ch.17 p.24
 void Model::CaisseEnregistreuse:: ajouterArticle(Article* article)
 {
     if (article->description!="" && article->prix!=0)

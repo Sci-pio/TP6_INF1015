@@ -64,7 +64,6 @@ void MainWindow::rafraichirVue()
     miseEnPlacePrix();
 }
 
-// voir ch.7 p.24
 void MainWindow::on_validerBtn_clicked()
 {
     try {
